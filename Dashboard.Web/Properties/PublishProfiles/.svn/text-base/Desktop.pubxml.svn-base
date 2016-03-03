@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+
+by customizing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121.
+
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WebPublishMethod>FileSystem</WebPublishMethod>
+    <LaunchASiteUrlAfterPublish>False</LaunchASiteUrlAfterPublish>
+    <SiteUrlToLaunchAfterPublish />
+    <publishUrl>C:\Users\Allen\Desktop\Dashboard</publishUrl>
+    <DeleteExistingFiles>False</DeleteExistingFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Dashboard.Web.dll">
+      <publishTime>03/01/2012 14:41:26</publishTime>
+    </File>
+    <File Include="bin/Dashboard.Web.pdb">
+      <publishTime>03/01/2012 14:41:26</publishTime>
+    </File>
+    <File Include="bin/de/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/de/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/de/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/01/2012 10:27:38</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.xml">
+      <publishTime>03/01/2012 10:27:38</publishTime>
+    </File>
+    <File Include="bin/es/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/es/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/es/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/fr/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:42</publishTime>
+    </File>
+    <File Include="bin/fr/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/fr/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/it/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/it/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/it/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/ja/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/ja/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/ja/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/ko/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/ko/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/ko/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/ru/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/ru/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/ru/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.EntityFramework.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.EntityFramework.xml">
+      <publishTime>02/06/2012 17:10:38</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.Hosting.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.Hosting.xml">
+      <publishTime>02/06/2012 17:10:40</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.Server.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/System.ServiceModel.DomainServices.Server.xml">
+      <publishTime>02/06/2012 17:10:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:42</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.ServiceModel.DomainServices.EntityFramework.resources.dll">
+      <publishTime>02/06/2012 17:17:44</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.ServiceModel.DomainServices.Hosting.resources.dll">
+      <publishTime>02/06/2012 17:17:48</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.ServiceModel.DomainServices.Server.resources.dll">
+      <publishTime>02/06/2012 17:17:50</publishTime>
+    </File>
+    <File Include="ClientBin/Dashboard.xap">
+      <publishTime>03/01/2012 14:48:38</publishTime>
+    </File>
+    <File Include="Dashboard.aspx">
+      <publishTime>03/01/2012 09:06:00</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/01/2012 10:27:40</publishTime>
+    </File>
+    <File Include="Silverlight.js">
+      <publishTime>03/01/2012 09:06:01</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>03/01/2012 14:38:20</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

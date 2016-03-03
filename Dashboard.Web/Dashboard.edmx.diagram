@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5a316dd22c0400fbf1e90047af9f289" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="DashboardModel.Description" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DashboardModel.CountyAverage" Width="1.5" PointX="5" PointY="0.625" />
+        <EntityTypeShape EntityType="DashboardModel.StateAverage" Width="1.5" PointX="7.25" PointY="0.5" />
+        <EntityTypeShape EntityType="DashboardModel.Summary" Width="1.5" PointX="9.625" PointY="0.5" />
+        <EntityTypeShape EntityType="DashboardModel.Home" Width="1.5" PointX="2.875" PointY="0.625" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

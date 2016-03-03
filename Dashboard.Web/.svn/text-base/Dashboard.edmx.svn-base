@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DashboardModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DashboardModelStoreContainer">
+          <EntitySet Name="CountyAverage" EntityType="DashboardModel.Store.CountyAverage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Description" EntityType="DashboardModel.Store.Description" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Home" EntityType="DashboardModel.Store.Home" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateAverage" EntityType="DashboardModel.Store.StateAverage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Summary" EntityType="DashboardModel.Store.Summary" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="CountyAverage">
+          <Key>
+            <PropertyRef Name="CountyCode" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="CountyCode" Type="int" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="PrivateDays" Type="int" Nullable="false" />
+          <Property Name="PrivateDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicareDays" Type="int" Nullable="false" />
+          <Property Name="MedicareDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicaidDays" Type="int" Nullable="false" />
+          <Property Name="MedicaidDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="OtherComprehensiveDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="ComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="NursingOccupancyPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="PrivateRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicareRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicaidRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="ComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="TotalRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="GovernmentAndAdministrativeExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="DietaryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="HousekeepingAndLaundryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="NursingCareExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherPatientCareExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="PropertyExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="RealEstateTaxPerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="TotalExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="NetIncomePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="CountyCode2" Type="int" Nullable="false" />
+          <Property Name="FiscalYear2" Type="int" Nullable="false" />
+          <Property Name="NetIncomePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="Description">
+          <Key>
+            <PropertyRef Name="PIN" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="PIN" Type="int" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="OperatingDays" Type="int" Nullable="false" />
+          <Property Name="FiscalEndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="PIN" />
+          </Key>
+          <Property Name="PIN" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="ZipCode" Type="int" Nullable="false" />
+          <Property Name="CountyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountyCode" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateAverage">
+          <Key>
+            <PropertyRef Name="State" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="PrivateDays" Type="int" Nullable="false" />
+          <Property Name="PrivateDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicareDays" Type="int" Nullable="false" />
+          <Property Name="MedicareDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicaidDays" Type="int" Nullable="false" />
+          <Property Name="MedicaidDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="OtherComprehensiveDaysPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="ComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="NursingOccupancyPercent" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="PrivateRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicareRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicaidRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="ComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="TotalRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="GovernmentAndAdministrativeExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="DietaryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="HousekeepingAndLaundryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="NursingCareExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherPatientCareExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="PropertyExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="RealEstateTaxPerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="TotalExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="NetIncomePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="State2" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="FiscalYear2" Type="int" Nullable="false" />
+          <Property Name="NetIncomePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="6" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="PIN" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="PIN" Type="int" Nullable="false" />
+          <Property Name="FiscalYear" Type="int" Nullable="false" />
+          <Property Name="OperatingDays" Type="int" Nullable="false" />
+          <Property Name="CertifiedBedCount" Type="int" Nullable="false" />
+          <Property Name="SpecialServiceRevenue" Type="int" Nullable="false" />
+          <Property Name="ComprehensivePayor1Name" Type="nvarchar" Nullable="false" />
+          <Property Name="ComprehensivePayor2Name" Type="nvarchar" Nullable="false" />
+          <Property Name="ComprehensivePayor3Name" Type="nvarchar" Nullable="false" />
+          <Property Name="PrivateDays" Type="int" Nullable="false" />
+          <Property Name="MedicareDays" Type="int" Nullable="false" />
+          <Property Name="MedicaidDays" Type="int" Nullable="false" />
+          <Property Name="ComprehensivePayor1Days" Type="int" Nullable="false" />
+          <Property Name="ComprehensivePayor2Days" Type="int" Nullable="false" />
+          <Property Name="ComprehensivePayor3Days" Type="int" Nullable="false" />
+          <Property Name="OtherComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="ComprehensiveDays" Type="int" Nullable="false" />
+          <Property Name="OtherCareDays" Type="int" Nullable="false" />
+          <Property Name="TotalDays" Type="int" Nullable="false" />
+          <Property Name="PrivateRevenue" Type="int" Nullable="false" />
+          <Property Name="UnadjustedMedicareRevenue" Type="int" Nullable="false" />
+          <Property Name="MedicaidRevenue" Type="int" Nullable="false" />
+          <Property Name="ComprehensiveCareCustom1InsuranceDays" Type="int" Nullable="false" />
+          <Property Name="ComprehensiveCareCustom2InsuranceDays" Type="int" Nullable="false" />
+          <Property Name="ComprehensiveCareCustom3InsuranceDays" Type="int" Nullable="false" />
+          <Property Name="UnadjustedComprehensivePayor1Revenue" Type="int" Nullable="false" />
+          <Property Name="UnadjustedComprehensivePayor2Revenue" Type="int" Nullable="false" />
+          <Property Name="UnadjustedComprehensivePayor3Revenue" Type="int" Nullable="false" />
+          <Property Name="UnadjustedOtherComprehensiveRevenue" Type="int" Nullable="false" />
+          <Property Name="ComprehensiveRevenue" Type="int" Nullable="false" />
+          <Property Name="OtherRevenue" Type="int" Nullable="false" />
+          <Property Name="GovernmentAndAdministrativeExpense" Type="int" Nullable="false" />
+          <Property Name="DietaryExpense" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="HousekeepingAndLaundryExpense" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="NursingCareExpense" Type="int" Nullable="false" />
+          <Property Name="OtherPatientCareExpense" Type="int" Nullable="false" />
+          <Property Name="PropertyExpense" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="RealEstateTax" Type="int" Nullable="false" />
+          <Property Name="MedicareRevenue" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="ComprehensivePayor1Revenue" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="ComprehensivePayor2Revenue" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="ComprehensivePayor3Revenue" Type="numeric" Nullable="false" Precision="36" Scale="12" />
+          <Property Name="OtherComprehensiveRevenue" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="PrivateDaysPercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="MedicareDaysPercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="MedicaidDaysPercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="OtherComprehensiveDaysPercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="PrivateDailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="MedicareDailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="MedicaidDailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="ComprehensivePayor1DailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="ComprehensivePayor2DailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="ComprehensivePayor3DailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="ComprehensivePayor1DailyCensusPercent" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="ComprehensivePayor2DailyCensusPercent" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="ComprehensivePayor3DailyCensusPercent" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="OtherComprehensiveDailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="ComprehensiveDailyCensus" Type="numeric" Nullable="false" Precision="17" Scale="6" />
+          <Property Name="AvailableDays" Type="int" Nullable="false" />
+          <Property Name="PrivateRevenuePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="MedicareRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="MedicaidRevenuePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="ComprehensivePayor1RevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="ComprehensivePayor2RevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="ComprehensivePayor3RevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="OtherComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="ComprehensiveRevenuePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="OtherRevenuePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="TotalRevenue" Type="int" Nullable="false" />
+          <Property Name="GovernmentAndAdministrativeExpensePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="DietaryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="HousekeepingAndLaundryExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="NursingCareExpensePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="OtherPatientCareExpensePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="PropertyExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="RealEstateTaxPerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="TotalExpense" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="TotalRevenuePerDay" Type="numeric" Nullable="false" Precision="24" Scale="12" />
+          <Property Name="ComprehensiveRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="OtherRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="TotalExpensePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="TotalExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="6" />
+          <Property Name="GovernmentAndAdministrativeExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="DietaryExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="HousekeepingAndLaundryExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="NursingCareExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="OtherPatientCareExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="PropertyExpensePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="6" />
+          <Property Name="RealEstateTaxPerRevenuePercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+          <Property Name="NetIncome" Type="numeric" Nullable="false" Precision="38" Scale="12" />
+          <Property Name="NetIncomePerDay" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="NetIncomePerRevenuePercent" Type="numeric" Nullable="false" Precision="38" Scale="6" />
+          <Property Name="NetIncomePerBed" Type="numeric" Nullable="false" Precision="38" Scale="10" />
+          <Property Name="ImpliedMinValue" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="ImpliedMinValuePerBed" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="ImpliedMaxValue" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="ImpliedMaxValuePerBed" Type="numeric" Nullable="false" Precision="38" Scale="8" />
+          <Property Name="NursingOccupancyPercent" Type="numeric" Nullable="false" Precision="28" Scale="12" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DashboardModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DashboardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Descriptions" EntityType="DashboardModel.Description" />
+          <EntitySet Name="CountyAverages" EntityType="DashboardModel.CountyAverage" />
+          <EntitySet Name="StateAverages" EntityType="DashboardModel.StateAverage" />
+          <EntitySet Name="Summaries" EntityType="DashboardModel.Summary" />
+          <EntitySet Name="Homes" EntityType="DashboardModel.Home" />
+          </EntityContainer>
+        <EntityType Name="Description">
+          <Key>
+            <PropertyRef Name="PIN" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Name="PIN" Type="Int32" Nullable="false" />
+          <Property Name="FiscalYear" Type="Int32" Nullable="false" />
+          <Property Name="OperatingDays" Type="Int32" Nullable="false" />
+          <Property Name="FiscalEndDate" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="CountyAverage">
+          <Key>
+            <PropertyRef Name="CountyCode" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Type="Int32" Name="CountyCode" Nullable="false" />
+          <Property Type="Int32" Name="FiscalYear" Nullable="false" />
+          <Property Type="Int32" Name="PrivateDays" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="MedicareDays" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="MedicaidDays" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="OtherComprehensiveDays" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveDays" Nullable="false" />
+          <Property Type="Decimal" Name="NursingOccupancyPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveRevenuePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensiveRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="GovernmentAndAdministrativeExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="DietaryExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="HousekeepingAndLaundryExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="NursingCareExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherPatientCareExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PropertyExpensePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="RealEstateTaxPerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalExpensePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Int32" Name="CountyCode2" Nullable="false" />
+          <Property Type="Int32" Name="FiscalYear2" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerRevenuePercent" Precision="38" Scale="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateAverage">
+          <Key>
+            <PropertyRef Name="FiscalYear" />
+            <PropertyRef Name="State" />
+          </Key>
+          <Property Type="Int32" Name="FiscalYear" Nullable="false" />
+          <Property Type="Int32" Name="PrivateDays" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="MedicareDays" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="MedicaidDays" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="OtherComprehensiveDays" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveDaysPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveDays" Nullable="false" />
+          <Property Type="Decimal" Name="NursingOccupancyPercent" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveRevenuePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensiveRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherRevenuePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="GovernmentAndAdministrativeExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="DietaryExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="HousekeepingAndLaundryExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="NursingCareExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherPatientCareExpensePerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PropertyExpensePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="RealEstateTaxPerDay" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalExpensePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerDay" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Int32" Name="FiscalYear2" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerRevenuePercent" Precision="38" Scale="6" Nullable="false" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="State2" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Summary">
+          <Key>
+            <PropertyRef Name="PIN" />
+            <PropertyRef Name="FiscalYear" />
+          </Key>
+          <Property Type="Int32" Name="PIN" Nullable="false" />
+          <Property Type="Int32" Name="FiscalYear" Nullable="false" />
+          <Property Type="Int32" Name="OperatingDays" Nullable="false" />
+          <Property Type="Int32" Name="CertifiedBedCount" Nullable="false" />
+          <Property Type="Int32" Name="SpecialServiceRevenue" Nullable="false" />
+          <Property Type="String" Name="ComprehensivePayor1Name" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="ComprehensivePayor2Name" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="ComprehensivePayor3Name" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="Int32" Name="PrivateDays" Nullable="false" />
+          <Property Type="Int32" Name="MedicareDays" Nullable="false" />
+          <Property Type="Int32" Name="MedicaidDays" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensivePayor1Days" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensivePayor2Days" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensivePayor3Days" Nullable="false" />
+          <Property Type="Int32" Name="OtherComprehensiveDays" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveDays" Nullable="false" />
+          <Property Type="Int32" Name="OtherCareDays" Nullable="false" />
+          <Property Type="Int32" Name="TotalDays" Nullable="false" />
+          <Property Type="Int32" Name="PrivateRevenue" Nullable="false" />
+          <Property Type="Int32" Name="UnadjustedMedicareRevenue" Nullable="false" />
+          <Property Type="Int32" Name="MedicaidRevenue" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveCareCustom1InsuranceDays" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveCareCustom2InsuranceDays" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveCareCustom3InsuranceDays" Nullable="false" />
+          <Property Type="Int32" Name="UnadjustedComprehensivePayor1Revenue" Nullable="false" />
+          <Property Type="Int32" Name="UnadjustedComprehensivePayor2Revenue" Nullable="false" />
+          <Property Type="Int32" Name="UnadjustedComprehensivePayor3Revenue" Nullable="false" />
+          <Property Type="Int32" Name="UnadjustedOtherComprehensiveRevenue" Nullable="false" />
+          <Property Type="Int32" Name="ComprehensiveRevenue" Nullable="false" />
+          <Property Type="Int32" Name="OtherRevenue" Nullable="false" />
+          <Property Type="Int32" Name="GovernmentAndAdministrativeExpense" Nullable="false" />
+          <Property Type="Decimal" Name="DietaryExpense" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="HousekeepingAndLaundryExpense" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="NursingCareExpense" Nullable="false" />
+          <Property Type="Int32" Name="OtherPatientCareExpense" Nullable="false" />
+          <Property Type="Decimal" Name="PropertyExpense" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Int32" Name="RealEstateTax" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareRevenue" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor1Revenue" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor2Revenue" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor3Revenue" Precision="36" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveRevenue" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateDaysPercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareDaysPercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidDaysPercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherComprehensiveDaysPercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateDailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="MedicareDailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="MedicaidDailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor1DailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor2DailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor3DailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensivePayor1DailyCensusPercent" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensivePayor2DailyCensusPercent" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensivePayor3DailyCensusPercent" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="OtherComprehensiveDailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="ComprehensiveDailyCensus" Precision="17" Scale="6" Nullable="false" />
+          <Property Type="Int32" Name="AvailableDays" Nullable="false" />
+          <Property Type="Decimal" Name="PrivateRevenuePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="MedicareRevenuePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="MedicaidRevenuePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensivePayor1RevenuePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensivePayor2RevenuePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensivePayor3RevenuePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="OtherComprehensiveRevenuePerDay" Nullable="false" Precision="38" Scale="10" />
+          <Property Type="Decimal" Name="ComprehensiveRevenuePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="OtherRevenuePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Int32" Name="TotalRevenue" Nullable="false" />
+          <Property Type="Decimal" Name="GovernmentAndAdministrativeExpensePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="DietaryExpensePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="HousekeepingAndLaundryExpensePerDay" Nullable="false" Precision="38" Scale="12" />
+          <Property Type="Decimal" Name="NursingCareExpensePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="OtherPatientCareExpensePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="PropertyExpensePerDay" Nullable="false" Precision="38" Scale="10" />
+          <Property Type="Decimal" Name="RealEstateTaxPerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="TotalExpense" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalRevenuePerDay" Nullable="false" Precision="24" Scale="12" />
+          <Property Type="Decimal" Name="ComprehensiveRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="TotalExpensePerDay" Nullable="false" Precision="38" Scale="10" />
+          <Property Type="Decimal" Name="TotalExpensePerRevenuePercent" Precision="38" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="GovernmentAndAdministrativeExpensePerRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="DietaryExpensePerRevenuePercent" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="HousekeepingAndLaundryExpensePerRevenuePercent" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="NursingCareExpensePerRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="OtherPatientCareExpensePerRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="PropertyExpensePerRevenuePercent" Precision="38" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="RealEstateTaxPerRevenuePercent" Precision="28" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncome" Precision="38" Scale="12" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerDay" Nullable="false" Precision="38" Scale="10" />
+          <Property Type="Decimal" Name="NetIncomePerRevenuePercent" Precision="38" Scale="6" Nullable="false" />
+          <Property Type="Decimal" Name="NetIncomePerBed" Precision="38" Scale="10" Nullable="false" />
+          <Property Type="Decimal" Name="ImpliedMinValue" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="ImpliedMinValuePerBed" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="ImpliedMaxValue" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="ImpliedMaxValuePerBed" Precision="38" Scale="8" Nullable="false" />
+          <Property Type="Decimal" Name="NursingOccupancyPercent" Precision="28" Scale="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Home">
+          <Key>
+            <PropertyRef Name="PIN" />
+          </Key>
+          <Property Type="Int32" Name="PIN" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Street" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="ZipCode" Nullable="false" />
+          <Property Type="String" Name="CountyName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CountyCode" Nullable="false" />
+          <Property Type="Int64" Name="Phone" Nullable="false" />
+          <Property Type="Double" Name="Latitude" Nullable="false" />
+          <Property Type="Double" Name="Longitude" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DashboardModelStoreContainer" CdmEntityContainer="DashboardEntities">
+          <EntitySetMapping Name="Descriptions">
+            <EntityTypeMapping TypeName="DashboardModel.Description">
+              <MappingFragment StoreEntitySet="Description">
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="OperatingDays" ColumnName="OperatingDays" />
+                <ScalarProperty Name="FiscalEndDate" ColumnName="FiscalEndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountyAverages">
+            <EntityTypeMapping TypeName="DashboardModel.CountyAverage">
+              <MappingFragment StoreEntitySet="CountyAverage">
+                <ScalarProperty Name="NetIncomePerRevenuePercent" ColumnName="NetIncomePerRevenuePercent" />
+                <ScalarProperty Name="FiscalYear2" ColumnName="FiscalYear2" />
+                <ScalarProperty Name="CountyCode2" ColumnName="CountyCode2" />
+                <ScalarProperty Name="NetIncomePerDay" ColumnName="NetIncomePerDay" />
+                <ScalarProperty Name="TotalExpensePerDay" ColumnName="TotalExpensePerDay" />
+                <ScalarProperty Name="RealEstateTaxPerDay" ColumnName="RealEstateTaxPerDay" />
+                <ScalarProperty Name="PropertyExpensePerDay" ColumnName="PropertyExpensePerDay" />
+                <ScalarProperty Name="OtherPatientCareExpensePerDay" ColumnName="OtherPatientCareExpensePerDay" />
+                <ScalarProperty Name="NursingCareExpensePerDay" ColumnName="NursingCareExpensePerDay" />
+                <ScalarProperty Name="HousekeepingAndLaundryExpensePerDay" ColumnName="HousekeepingAndLaundryExpensePerDay" />
+                <ScalarProperty Name="DietaryExpensePerDay" ColumnName="DietaryExpensePerDay" />
+                <ScalarProperty Name="GovernmentAndAdministrativeExpensePerDay" ColumnName="GovernmentAndAdministrativeExpensePerDay" />
+                <ScalarProperty Name="OtherRevenuePerDay" ColumnName="OtherRevenuePerDay" />
+                <ScalarProperty Name="TotalRevenuePerDay" ColumnName="TotalRevenuePerDay" />
+                <ScalarProperty Name="ComprehensiveRevenuePerDay" ColumnName="ComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="OtherComprehensiveRevenuePerDay" ColumnName="OtherComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="MedicaidRevenuePerDay" ColumnName="MedicaidRevenuePerDay" />
+                <ScalarProperty Name="MedicareRevenuePerDay" ColumnName="MedicareRevenuePerDay" />
+                <ScalarProperty Name="PrivateRevenuePerDay" ColumnName="PrivateRevenuePerDay" />
+                <ScalarProperty Name="NursingOccupancyPercent" ColumnName="NursingOccupancyPercent" />
+                <ScalarProperty Name="ComprehensiveDays" ColumnName="ComprehensiveDays" />
+                <ScalarProperty Name="OtherComprehensiveDaysPercent" ColumnName="OtherComprehensiveDaysPercent" />
+                <ScalarProperty Name="OtherComprehensiveDays" ColumnName="OtherComprehensiveDays" />
+                <ScalarProperty Name="MedicaidDaysPercent" ColumnName="MedicaidDaysPercent" />
+                <ScalarProperty Name="MedicaidDays" ColumnName="MedicaidDays" />
+                <ScalarProperty Name="MedicareDaysPercent" ColumnName="MedicareDaysPercent" />
+                <ScalarProperty Name="MedicareDays" ColumnName="MedicareDays" />
+                <ScalarProperty Name="PrivateDaysPercent" ColumnName="PrivateDaysPercent" />
+                <ScalarProperty Name="PrivateDays" ColumnName="PrivateDays" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="CountyCode" ColumnName="CountyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateAverages">
+            <EntityTypeMapping TypeName="DashboardModel.StateAverage">
+              <MappingFragment StoreEntitySet="StateAverage">
+                <ScalarProperty Name="State2" ColumnName="State2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="NetIncomePerRevenuePercent" ColumnName="NetIncomePerRevenuePercent" />
+                <ScalarProperty Name="FiscalYear2" ColumnName="FiscalYear2" />
+                <ScalarProperty Name="NetIncomePerDay" ColumnName="NetIncomePerDay" />
+                <ScalarProperty Name="TotalExpensePerDay" ColumnName="TotalExpensePerDay" />
+                <ScalarProperty Name="RealEstateTaxPerDay" ColumnName="RealEstateTaxPerDay" />
+                <ScalarProperty Name="PropertyExpensePerDay" ColumnName="PropertyExpensePerDay" />
+                <ScalarProperty Name="OtherPatientCareExpensePerDay" ColumnName="OtherPatientCareExpensePerDay" />
+                <ScalarProperty Name="NursingCareExpensePerDay" ColumnName="NursingCareExpensePerDay" />
+                <ScalarProperty Name="HousekeepingAndLaundryExpensePerDay" ColumnName="HousekeepingAndLaundryExpensePerDay" />
+                <ScalarProperty Name="DietaryExpensePerDay" ColumnName="DietaryExpensePerDay" />
+                <ScalarProperty Name="GovernmentAndAdministrativeExpensePerDay" ColumnName="GovernmentAndAdministrativeExpensePerDay" />
+                <ScalarProperty Name="OtherRevenuePerDay" ColumnName="OtherRevenuePerDay" />
+                <ScalarProperty Name="TotalRevenuePerDay" ColumnName="TotalRevenuePerDay" />
+                <ScalarProperty Name="ComprehensiveRevenuePerDay" ColumnName="ComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="OtherComprehensiveRevenuePerDay" ColumnName="OtherComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="MedicaidRevenuePerDay" ColumnName="MedicaidRevenuePerDay" />
+                <ScalarProperty Name="MedicareRevenuePerDay" ColumnName="MedicareRevenuePerDay" />
+                <ScalarProperty Name="PrivateRevenuePerDay" ColumnName="PrivateRevenuePerDay" />
+                <ScalarProperty Name="NursingOccupancyPercent" ColumnName="NursingOccupancyPercent" />
+                <ScalarProperty Name="ComprehensiveDays" ColumnName="ComprehensiveDays" />
+                <ScalarProperty Name="OtherComprehensiveDaysPercent" ColumnName="OtherComprehensiveDaysPercent" />
+                <ScalarProperty Name="OtherComprehensiveDays" ColumnName="OtherComprehensiveDays" />
+                <ScalarProperty Name="MedicaidDaysPercent" ColumnName="MedicaidDaysPercent" />
+                <ScalarProperty Name="MedicaidDays" ColumnName="MedicaidDays" />
+                <ScalarProperty Name="MedicareDaysPercent" ColumnName="MedicareDaysPercent" />
+                <ScalarProperty Name="MedicareDays" ColumnName="MedicareDays" />
+                <ScalarProperty Name="PrivateDaysPercent" ColumnName="PrivateDaysPercent" />
+                <ScalarProperty Name="PrivateDays" ColumnName="PrivateDays" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Summaries">
+            <EntityTypeMapping TypeName="DashboardModel.Summary">
+              <MappingFragment StoreEntitySet="Summary">
+                <ScalarProperty Name="NursingOccupancyPercent" ColumnName="NursingOccupancyPercent" />
+                <ScalarProperty Name="ImpliedMaxValuePerBed" ColumnName="ImpliedMaxValuePerBed" />
+                <ScalarProperty Name="ImpliedMaxValue" ColumnName="ImpliedMaxValue" />
+                <ScalarProperty Name="ImpliedMinValuePerBed" ColumnName="ImpliedMinValuePerBed" />
+                <ScalarProperty Name="ImpliedMinValue" ColumnName="ImpliedMinValue" />
+                <ScalarProperty Name="NetIncomePerBed" ColumnName="NetIncomePerBed" />
+                <ScalarProperty Name="NetIncomePerRevenuePercent" ColumnName="NetIncomePerRevenuePercent" />
+                <ScalarProperty Name="NetIncomePerDay" ColumnName="NetIncomePerDay" />
+                <ScalarProperty Name="NetIncome" ColumnName="NetIncome" />
+                <ScalarProperty Name="RealEstateTaxPerRevenuePercent" ColumnName="RealEstateTaxPerRevenuePercent" />
+                <ScalarProperty Name="PropertyExpensePerRevenuePercent" ColumnName="PropertyExpensePerRevenuePercent" />
+                <ScalarProperty Name="OtherPatientCareExpensePerRevenuePercent" ColumnName="OtherPatientCareExpensePerRevenuePercent" />
+                <ScalarProperty Name="NursingCareExpensePerRevenuePercent" ColumnName="NursingCareExpensePerRevenuePercent" />
+                <ScalarProperty Name="HousekeepingAndLaundryExpensePerRevenuePercent" ColumnName="HousekeepingAndLaundryExpensePerRevenuePercent" />
+                <ScalarProperty Name="DietaryExpensePerRevenuePercent" ColumnName="DietaryExpensePerRevenuePercent" />
+                <ScalarProperty Name="GovernmentAndAdministrativeExpensePerRevenuePercent" ColumnName="GovernmentAndAdministrativeExpensePerRevenuePercent" />
+                <ScalarProperty Name="TotalExpensePerRevenuePercent" ColumnName="TotalExpensePerRevenuePercent" />
+                <ScalarProperty Name="TotalExpensePerDay" ColumnName="TotalExpensePerDay" />
+                <ScalarProperty Name="OtherRevenuePercent" ColumnName="OtherRevenuePercent" />
+                <ScalarProperty Name="ComprehensiveRevenuePercent" ColumnName="ComprehensiveRevenuePercent" />
+                <ScalarProperty Name="TotalRevenuePerDay" ColumnName="TotalRevenuePerDay" />
+                <ScalarProperty Name="TotalExpense" ColumnName="TotalExpense" />
+                <ScalarProperty Name="RealEstateTaxPerDay" ColumnName="RealEstateTaxPerDay" />
+                <ScalarProperty Name="PropertyExpensePerDay" ColumnName="PropertyExpensePerDay" />
+                <ScalarProperty Name="OtherPatientCareExpensePerDay" ColumnName="OtherPatientCareExpensePerDay" />
+                <ScalarProperty Name="NursingCareExpensePerDay" ColumnName="NursingCareExpensePerDay" />
+                <ScalarProperty Name="HousekeepingAndLaundryExpensePerDay" ColumnName="HousekeepingAndLaundryExpensePerDay" />
+                <ScalarProperty Name="DietaryExpensePerDay" ColumnName="DietaryExpensePerDay" />
+                <ScalarProperty Name="GovernmentAndAdministrativeExpensePerDay" ColumnName="GovernmentAndAdministrativeExpensePerDay" />
+                <ScalarProperty Name="TotalRevenue" ColumnName="TotalRevenue" />
+                <ScalarProperty Name="OtherRevenuePerDay" ColumnName="OtherRevenuePerDay" />
+                <ScalarProperty Name="ComprehensiveRevenuePerDay" ColumnName="ComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="OtherComprehensiveRevenuePerDay" ColumnName="OtherComprehensiveRevenuePerDay" />
+                <ScalarProperty Name="ComprehensivePayor3RevenuePerDay" ColumnName="ComprehensivePayor3RevenuePerDay" />
+                <ScalarProperty Name="ComprehensivePayor2RevenuePerDay" ColumnName="ComprehensivePayor2RevenuePerDay" />
+                <ScalarProperty Name="ComprehensivePayor1RevenuePerDay" ColumnName="ComprehensivePayor1RevenuePerDay" />
+                <ScalarProperty Name="MedicaidRevenuePerDay" ColumnName="MedicaidRevenuePerDay" />
+                <ScalarProperty Name="MedicareRevenuePerDay" ColumnName="MedicareRevenuePerDay" />
+                <ScalarProperty Name="PrivateRevenuePerDay" ColumnName="PrivateRevenuePerDay" />
+                <ScalarProperty Name="AvailableDays" ColumnName="AvailableDays" />
+                <ScalarProperty Name="ComprehensiveDailyCensus" ColumnName="ComprehensiveDailyCensus" />
+                <ScalarProperty Name="OtherComprehensiveDailyCensus" ColumnName="OtherComprehensiveDailyCensus" />
+                <ScalarProperty Name="ComprehensivePayor3DailyCensusPercent" ColumnName="ComprehensivePayor3DailyCensusPercent" />
+                <ScalarProperty Name="ComprehensivePayor2DailyCensusPercent" ColumnName="ComprehensivePayor2DailyCensusPercent" />
+                <ScalarProperty Name="ComprehensivePayor1DailyCensusPercent" ColumnName="ComprehensivePayor1DailyCensusPercent" />
+                <ScalarProperty Name="ComprehensivePayor3DailyCensus" ColumnName="ComprehensivePayor3DailyCensus" />
+                <ScalarProperty Name="ComprehensivePayor2DailyCensus" ColumnName="ComprehensivePayor2DailyCensus" />
+                <ScalarProperty Name="ComprehensivePayor1DailyCensus" ColumnName="ComprehensivePayor1DailyCensus" />
+                <ScalarProperty Name="MedicaidDailyCensus" ColumnName="MedicaidDailyCensus" />
+                <ScalarProperty Name="MedicareDailyCensus" ColumnName="MedicareDailyCensus" />
+                <ScalarProperty Name="PrivateDailyCensus" ColumnName="PrivateDailyCensus" />
+                <ScalarProperty Name="OtherComprehensiveDaysPercent" ColumnName="OtherComprehensiveDaysPercent" />
+                <ScalarProperty Name="MedicaidDaysPercent" ColumnName="MedicaidDaysPercent" />
+                <ScalarProperty Name="MedicareDaysPercent" ColumnName="MedicareDaysPercent" />
+                <ScalarProperty Name="PrivateDaysPercent" ColumnName="PrivateDaysPercent" />
+                <ScalarProperty Name="OtherComprehensiveRevenue" ColumnName="OtherComprehensiveRevenue" />
+                <ScalarProperty Name="ComprehensivePayor3Revenue" ColumnName="ComprehensivePayor3Revenue" />
+                <ScalarProperty Name="ComprehensivePayor2Revenue" ColumnName="ComprehensivePayor2Revenue" />
+                <ScalarProperty Name="ComprehensivePayor1Revenue" ColumnName="ComprehensivePayor1Revenue" />
+                <ScalarProperty Name="MedicareRevenue" ColumnName="MedicareRevenue" />
+                <ScalarProperty Name="RealEstateTax" ColumnName="RealEstateTax" />
+                <ScalarProperty Name="PropertyExpense" ColumnName="PropertyExpense" />
+                <ScalarProperty Name="OtherPatientCareExpense" ColumnName="OtherPatientCareExpense" />
+                <ScalarProperty Name="NursingCareExpense" ColumnName="NursingCareExpense" />
+                <ScalarProperty Name="HousekeepingAndLaundryExpense" ColumnName="HousekeepingAndLaundryExpense" />
+                <ScalarProperty Name="DietaryExpense" ColumnName="DietaryExpense" />
+                <ScalarProperty Name="GovernmentAndAdministrativeExpense" ColumnName="GovernmentAndAdministrativeExpense" />
+                <ScalarProperty Name="OtherRevenue" ColumnName="OtherRevenue" />
+                <ScalarProperty Name="ComprehensiveRevenue" ColumnName="ComprehensiveRevenue" />
+                <ScalarProperty Name="UnadjustedOtherComprehensiveRevenue" ColumnName="UnadjustedOtherComprehensiveRevenue" />
+                <ScalarProperty Name="UnadjustedComprehensivePayor3Revenue" ColumnName="UnadjustedComprehensivePayor3Revenue" />
+                <ScalarProperty Name="UnadjustedComprehensivePayor2Revenue" ColumnName="UnadjustedComprehensivePayor2Revenue" />
+                <ScalarProperty Name="UnadjustedComprehensivePayor1Revenue" ColumnName="UnadjustedComprehensivePayor1Revenue" />
+                <ScalarProperty Name="ComprehensiveCareCustom3InsuranceDays" ColumnName="ComprehensiveCareCustom3InsuranceDays" />
+                <ScalarProperty Name="ComprehensiveCareCustom2InsuranceDays" ColumnName="ComprehensiveCareCustom2InsuranceDays" />
+                <ScalarProperty Name="ComprehensiveCareCustom1InsuranceDays" ColumnName="ComprehensiveCareCustom1InsuranceDays" />
+                <ScalarProperty Name="MedicaidRevenue" ColumnName="MedicaidRevenue" />
+                <ScalarProperty Name="UnadjustedMedicareRevenue" ColumnName="UnadjustedMedicareRevenue" />
+                <ScalarProperty Name="PrivateRevenue" ColumnName="PrivateRevenue" />
+                <ScalarProperty Name="TotalDays" ColumnName="TotalDays" />
+                <ScalarProperty Name="OtherCareDays" ColumnName="OtherCareDays" />
+                <ScalarProperty Name="ComprehensiveDays" ColumnName="ComprehensiveDays" />
+                <ScalarProperty Name="OtherComprehensiveDays" ColumnName="OtherComprehensiveDays" />
+                <ScalarProperty Name="ComprehensivePayor3Days" ColumnName="ComprehensivePayor3Days" />
+                <ScalarProperty Name="ComprehensivePayor2Days" ColumnName="ComprehensivePayor2Days" />
+                <ScalarProperty Name="ComprehensivePayor1Days" ColumnName="ComprehensivePayor1Days" />
+                <ScalarProperty Name="MedicaidDays" ColumnName="MedicaidDays" />
+                <ScalarProperty Name="MedicareDays" ColumnName="MedicareDays" />
+                <ScalarProperty Name="PrivateDays" ColumnName="PrivateDays" />
+                <ScalarProperty Name="ComprehensivePayor3Name" ColumnName="ComprehensivePayor3Name" />
+                <ScalarProperty Name="ComprehensivePayor2Name" ColumnName="ComprehensivePayor2Name" />
+                <ScalarProperty Name="ComprehensivePayor1Name" ColumnName="ComprehensivePayor1Name" />
+                <ScalarProperty Name="SpecialServiceRevenue" ColumnName="SpecialServiceRevenue" />
+                <ScalarProperty Name="CertifiedBedCount" ColumnName="CertifiedBedCount" />
+                <ScalarProperty Name="OperatingDays" ColumnName="OperatingDays" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Homes">
+            <EntityTypeMapping TypeName="DashboardModel.Home">
+              <MappingFragment StoreEntitySet="Home">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="CountyCode" ColumnName="CountyCode" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

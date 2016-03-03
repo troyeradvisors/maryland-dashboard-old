@@ -1,0 +1,275 @@
+﻿<navigation:Page 
+  x:Class="Dashboard.Competition" 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+  mc:Ignorable="d" d:DesignWidth="1578" d:DesignHeight="1088" 
+  Style="{StaticResource PageStyle}"
+  xmlns:local="clr-namespace:Dashboard"
+  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+  xmlns:m="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
+  xmlns:float="clr-namespace:System.Windows.Controls;assembly=FloatableWindow"
+  xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+  DataContext="{Binding RelativeSource={RelativeSource self}}" x:Name="This" SizeChanged="This_SizeChanged" NavigationCacheMode="Required" Loaded="This_Loaded">
+
+    <Grid x:Name="LayoutRoot" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <!--<Image Source="/Dashboard;component/Images/backgroundtexture.png" Stretch="Fill" />-->
+        <!--<controls:TiledBackground SourceUri="/Dashboard;component/Images/backgroundtexture.png" />-->
+        <!--<Image Source="/Dashboard;component/Images/backgroundshadow.png" Stretch="Fill" />-->
+
+
+
+        <StackPanel Orientation="Horizontal" Height="98" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="400 -123 0 0">
+            <ListBox x:Name="lbUnselected" DisplayMemberPath="Name"  SelectionMode="Extended"  />
+            <Grid Width="32">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Button  Grid.Row="0" Margin="3" Padding="0" x:Name="btnMoveRight" Click="btnMoveRight_Click">
+                    <Path Width="15" Height="8" Data="M0,0 L1,0 0.5,1Z" Fill="#606060" Stretch="Fill" RenderTransformOrigin=".5,.5">
+                        <Path.RenderTransform>
+                            <RotateTransform Angle="-90" />
+                        </Path.RenderTransform>
+                    </Path>
+                </Button>
+                <Button Grid.Row="1" Padding="0" Margin="3" Name="btnMoveLeft" Click="btnMoveLeft_Click">
+                    <Path Width="15" Height="8" Data="M0,0 L1,0 0.5,1Z" Fill="#606060" Stretch="Fill" RenderTransformOrigin=".5,.5">
+                        <Path.RenderTransform>
+                            <RotateTransform Angle="90" />
+                        </Path.RenderTransform>
+                    </Path>
+                </Button>
+                <Button Padding="0" Grid.Row="2" Margin="3" Name="btnClear" Click="btnClear_Click">
+                    <Path Width="10" Height="10" Stroke="#606060" Stretch="Fill" Data="M0,0 L1,1 M0,1 L1,0" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeThickness="3" />
+                </Button>
+            </Grid>
+            <ListBox x:Name="lbSelected" DisplayMemberPath="Name" SelectionMode="Extended" />
+        </StackPanel>
+
+
+
+
+        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}"  >
+            
+            
+            <Grid x:Name="ContentGrid" Style="{StaticResource ContentGridStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <local:WrapBreakPanel x:Name="wrapChart" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="Auto" Grid.Row="0" Margin="0 0 0 0">
+                    <Grid x:Name="stackGrids" Margin="0 0 0 20" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                    <Grid x:Name="gridHeader" Margin="0 0 -95 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Facility" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}"  />
+                        <TextBlock Text="    Address" Grid.Row="2" Grid.Column="0" Grid.RowSpan="2"  Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+                        <!--<TextBlock Text="City, State" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}" />-->
+                        <TextBlock Text="    Beds" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+
+                        <TextBlock Text="Payor Mix" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                        <TextBlock Text="    Private" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicare" Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicaid" Grid.Row="9" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Other" Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="Occupancy" Grid.Row="11" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+
+                        <TextBlock Text="Average Rate PRD" Grid.Row="13" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                        <TextBlock Text="    Private" Grid.Row="14" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicare" Grid.Row="15" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicaid" Grid.Row="16" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Other" Grid.Row="17" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+
+                        <TextBlock Text="Average Daily Census" Grid.Row="19" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                        <TextBlock Text="    Private" Grid.Row="20" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicare" Grid.Row="21" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Medicaid" Grid.Row="22" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="    Other" Grid.Row="23" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+
+                        <TextBlock Text="Revenue" Grid.Row="25" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="Expenses" Grid.Row="26" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                        <TextBlock Text="NOI" Grid.Row="27" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                        <TextBlock Text="Profit" Grid.Row="28" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    </Grid>
+                    <ScrollViewer x:Name="gridScrollViewer" Grid.Column="1" Padding="0 0 0 10" Style="{StaticResource PageScrollViewerStyle}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                        <Grid x:Name="grid" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                                <sdk:GridSplitter x:Name="Splitter" Style="{StaticResource TotalsGridSplitterStyle}" Grid.Row="26" />
+                            </Grid>
+                    </ScrollViewer>
+                    </Grid>
+                    
+                        <m:Map x:Name="map"  Effect="{StaticResource ControlShadowEffect}" UseInertia="True" MinHeight="309" MinWidth="375" Style="{StaticResource MapStyle}"  CredentialsProvider="AoVaskJnEJsPIrC2ArWVkknMFl4hJgPJ85JfTp-4J6YKeSDxhsBy8RtRZDoOlLPk" />
+                        
+                    <toolkit:WrapPanel local:WrapBreakPanel.LineBreakBefore="True">
+                            <toolkit:Chart x:Name="barFacilityOccupancy" Title="Occupancy" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource SmallBarStyle}" Margin="10 0 30 10">
+                                <toolkit:Chart.Series >
+                                    <toolkit:BarSeries Title="Average" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                    <toolkit:BarSeries Title="Facility" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                </toolkit:Chart.Series>
+                                <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="X" Minimum="0" AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" />
+                                </toolkit:Chart.Axes>
+                            </toolkit:Chart>
+                            <toolkit:Chart x:Name="barFacilityMedicareMix" Title="Medicare Mix" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource SmallBarStyle}"  Margin="10 0 30 10">
+                                <toolkit:Chart.Series >
+                                    <toolkit:BarSeries Title="Average" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                    <toolkit:BarSeries Title="Facility" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                </toolkit:Chart.Series>
+                                <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="X" Minimum="0"  AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" />
+                                </toolkit:Chart.Axes>
+                            </toolkit:Chart>                            
+                            <toolkit:Chart x:Name="barFacilityMedicareRate" Title="Medicare Rate" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource SmallBarStyle}"  Margin="10 0 30 10">
+                                <toolkit:Chart.Series >
+                                    <toolkit:BarSeries Title="Average" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                    <toolkit:BarSeries Title="Facility" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                </toolkit:Chart.Series>
+                                <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="X" Minimum="0" AxisLabelStyle="{StaticResource CurrencyAxisLabelStyle}"   />
+                                </toolkit:Chart.Axes>
+                            </toolkit:Chart>                            
+                            <toolkit:Chart x:Name="barFacilityMedicaidRate" Title="Medicaid Rate" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource SmallBarStyle}" Margin="10 0 30 10">
+                                <toolkit:Chart.Series >
+                                    <toolkit:BarSeries Title="Average" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                    <toolkit:BarSeries Title="Facility" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                </toolkit:Chart.Series>
+                                <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="X" Minimum="0"  AxisLabelStyle="{StaticResource CurrencyAxisLabelStyle}" />
+                                </toolkit:Chart.Axes>
+                            </toolkit:Chart>
+
+                            <toolkit:Chart x:Name="barFacilityProfitMargin" Title="Profit Margin" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource SmallBarStyle}"  Margin="10 0 30 10">
+                                <toolkit:Chart.Series >
+                                    <toolkit:BarSeries Title="Average" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                    <toolkit:BarSeries Title="Facility" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                                </toolkit:Chart.Series>
+                                <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="X" AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" />
+                            </toolkit:Chart.Axes>
+                            </toolkit:Chart>
+
+                        </toolkit:WrapPanel>
+                        <toolkit:WrapPanel local:WrapBreakPanel.LineBreakBefore="True">
+                        <toolkit:Chart x:Name="colAveragePayorMix"   Style="{StaticResource DefaultColumnStyle}" Title="Average Payor Mix"  local:WrapBreakPanel.LineBreakBefore="True" Margin="0 0 10 10">
+                            <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" ShowGridLines="True"/>
+                            </toolkit:Chart.Axes>
+                        </toolkit:Chart>
+                        <toolkit:Chart x:Name="colAverageRatePRD"  Style="{StaticResource DefaultColumnStyle}" Title="Average Rate PRD"  Margin="0 0 10 10">
+                            <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource CurrencyAxisLabelStyle}" ShowGridLines="True"  />
+                            </toolkit:Chart.Axes>
+                        </toolkit:Chart>
+                    </toolkit:WrapPanel>
+                        <toolkit:WrapPanel>
+                        <toolkit:Chart x:Name="colAverageDailyCensus"   Style="{StaticResource DefaultColumnStyle}" Title="Average Daily Census" Margin="0 0 10 10" >
+                            <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource NumericAxisLabelStyle}" ShowGridLines="True"  />
+                            </toolkit:Chart.Axes>
+                        </toolkit:Chart>
+                        <toolkit:Chart x:Name="colNetOperatingIncome"   Style="{StaticResource DefaultColumnStyle}" Title="Average Net Income"  Margin="0 0 10 10" >
+                            <toolkit:Chart.Axes>
+                                <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource CurrencyAxisLabelStyle}" ShowGridLines="true" />
+                            </toolkit:Chart.Axes>
+                        </toolkit:Chart>
+                    </toolkit:WrapPanel>
+                    </local:WrapBreakPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Canvas x:Name="windowCanvas" >
+            <float:FloatableWindow x:Name="legendWindow"  Style="{StaticResource FloatableWindowStyle}" HasCloseButton="False" MaxHeight="800" Canvas.Left="480" Canvas.Top="340" Title=""  BorderBrush="{x:Null}" >
+                <float:FloatableWindow.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#55000000" Offset="0" />
+                        <GradientStop Color="#30000000" Offset="1" />
+                    </LinearGradientBrush>
+                </float:FloatableWindow.Background>
+                <ScrollViewer Style="{StaticResource PageScrollViewerStyle}" HorizontalScrollBarVisibility="Disabled" >
+                    <toolkit:Chart x:Name="legend" ChartAreaStyle="{StaticResource NoChartStyle}" Style="{StaticResource WrapLegendStyle}" Margin="0 -15 0 0" Width="Auto" Height="Auto" HorizontalAlignment="left" VerticalAlignment="top" Effect="{StaticResource TextEffect}"  >
+                        <toolkit:Chart.Series>
+                            <toolkit:ColumnSeries Title="Testing the drop effect" />
+                        </toolkit:Chart.Series>
+                    </toolkit:Chart>
+                </ScrollViewer>
+            </float:FloatableWindow>
+        </Canvas>
+    </Grid>
+</navigation:Page>

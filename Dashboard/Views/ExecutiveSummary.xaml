@@ -1,0 +1,274 @@
+﻿<navigation:Page xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"  
+  x:Class="Dashboard.ExecutiveSummary" 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" d:DesignWidth="1300" d:DesignHeight="1200" 
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+  xmlns:controls="clr-namespace:Dashboard.Controls"
+  
+  Style="{StaticResource PageStyle}"
+  xmlns:riaControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" 
+  xmlns:my="clr-namespace:Dashboard.Web.Services" 
+  xmlns:my1="clr-namespace:Dashboard.Web"
+  xmlns:local="clr-namespace:Dashboard"
+  xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+  xmlns:m="clr-namespace:Microsoft.Maps.MapControl;assembly=Microsoft.Maps.MapControl"
+  DataContext="{Binding RelativeSource={RelativeSource self}}" NavigationCacheMode="Required" >
+    
+    <Grid x:Name="LayoutRoot">
+        <!--<controls:TiledBackground SourceUri="/Dashboard;component/Images/backgroundtexture.png" />-->
+        <!--<Image Source="/Dashboard;component/Images/backgroundshadow.png" Stretch="Fill" />-->
+
+
+
+        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}" >
+            <Grid x:Name="ContentGrid" Style="{StaticResource ContentGridStyle}">
+                <Grid Margin="763,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Effect="{StaticResource ControlShadowEffect}">
+                    <m:Map x:Name="map" Height="375" Width="520"  UseInertia="True" Style="{StaticResource MapStyle}" CredentialsProvider="AoVaskJnEJsPIrC2ArWVkknMFl4hJgPJ85JfTp-4J6YKeSDxhsBy8RtRZDoOlLPk" />
+                </Grid>
+                <!--<TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
+                           Text="{Binding Path=Strings.HomePageTitle, Source={StaticResource ApplicationResources}}"/>-->
+                <!--<TextBlock x:Name="ContentText" Style="{StaticResource ContentTextStyle}" 
+                           Text="Home page content"/>-->
+                <Grid x:Name="TestGrid" Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,42,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Nursing Payor Mix"  Grid.Row="0" Grid.Column="0"  Style="{StaticResource GridTitleStyle}" />
+                    <TextBlock Text="Days"  Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelColumnHeaderStyle}"/>
+                    <TextBlock Text="%"  Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelColumnHeaderStyle}"/>
+
+                    <TextBlock Text="Private Pay" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding PrivateDays, StringFormat='N0'}" Grid.Row="1" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding PrivateDaysPercent, StringFormat='{}{0:0}%'}" Grid.Row="1" Grid.Column="2" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="Medicare" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding MedicareDays, StringFormat='N0'}" Grid.Row="2" Grid.Column="1" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="{Binding MedicareDaysPercent, StringFormat='{}{0:0}%'}" Grid.Row="2" Grid.Column="2" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="Medicaid" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding MedicaidDays, StringFormat='N0'}" Grid.Row="3" Grid.Column="1" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="{Binding MedicaidDaysPercent, StringFormat='{}{0:0}%'}" Grid.Row="3" Grid.Column="2" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="Other" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding OtherComprehensiveDays, StringFormat='N0'}" Grid.Row="4" Grid.Column="1" Style="{StaticResource GridValueStyle}"/>
+                    <TextBlock Text="{Binding OtherComprehensiveDaysPercent, StringFormat='{}{0:0}%'}" Grid.Row="4" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <sdk:GridSplitter Style="{StaticResource TotalsGridSplitterStyle}" Grid.ColumnSpan="3" Grid.Row="4" />
+                    <TextBlock Text="Total Nursing Days"  Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}"/>
+                    <TextBlock Text="{Binding ComprehensiveDays, StringFormat='N0'}" Grid.Row="5" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}"/>
+                    <TextBlock Text="100%" Grid.Row="5" Grid.Column="2" Style="{StaticResource GridValueHeaderStyle}"/>
+                    <TextBlock Text="Available Nursing Days" Grid.Row="6" Grid.Column="0"  Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock Text="{Binding AvailableDays, StringFormat='N0'}" Grid.Row="6" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}"/>
+                    <TextBlock Text="Nursing Occupancy" Grid.Row="7" Grid.Column="0"  Style="{StaticResource LabelHeaderStyle}"/>
+                    <TextBlock Text="{Binding NursingOccupancyPercent, StringFormat='{}{0:0}%'}" Grid.Row="7" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" />
+                </Grid>
+                <toolkit:Chart x:Name="barRevenuePerResidentDay" Style="{StaticResource DefaultColumnStyle}"  HorizontalAlignment="Left"  Title="Revenue PRD"  VerticalAlignment="Top" Margin="574,893,0,0"  >
+                    <toolkit:Chart.Series>
+                        <toolkit:ColumnSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                        <toolkit:ColumnSeries Title="County" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                        <toolkit:ColumnSeries Title="State" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                    </toolkit:Chart.Series>
+                    <toolkit:Chart.Axes>
+                        <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource CurrencyAxisLabelStyle}" />
+                    </toolkit:Chart.Axes>
+                </toolkit:Chart>
+                <toolkit:Chart x:Name="barProfitMargin" Style="{StaticResource DefaultColumnStyle}"   HorizontalAlignment="Left"  Title="Profit Margin"  VerticalAlignment="Top" Margin="896,893,0,0">
+                    <toolkit:Chart.Series>
+                        <toolkit:ColumnSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                        <toolkit:ColumnSeries Title="County" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                        <toolkit:ColumnSeries Title="State" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                    </toolkit:Chart.Series>
+                    <toolkit:Chart.Axes>
+                        <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" />
+                    </toolkit:Chart.Axes>
+                </toolkit:Chart>
+                <toolkit:Chart x:Name="piePercentOfRevenue" Style="{StaticResource DefaultPieStyle}" HorizontalAlignment="Left"  Title="Percent Of Revenue              "  VerticalAlignment="Top" Margin="656,483,0,0" Height="363" Width="437" >
+                    <toolkit:Chart.Series>
+                        <toolkit:PieSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}"  />
+                    </toolkit:Chart.Series>
+                </toolkit:Chart>
+                <Grid Margin="86,268,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  >
+                    <toolkit:Chart x:Name="piePayorMixLegend" Title="Payor Mix" ChartAreaStyle="{StaticResource NoChartStyle}" Style="{StaticResource ChartLegendBottomStyle}" Width="Auto" Height="Auto" >
+                        <toolkit:Chart.Series>
+                            <toolkit:PieSeries Title="Subject" IndependentValueBinding="{Binding First}" DependentValueBinding="{Binding Second}">
+                                <toolkit:PieSeries.ItemsSource>
+                                    <local:ObservableObjectCollection>
+                                        <local:Pair First="Private   " Second="1" />
+                                        <local:Pair First="Medicare   " Second="1" />
+                                        <local:Pair First="Medicaid   " Second="1" />
+                                        <local:Pair First="Other" Second="1" />
+                                    </local:ObservableObjectCollection>
+                                </toolkit:PieSeries.ItemsSource>
+                            </toolkit:PieSeries>
+                        </toolkit:Chart.Series>
+                    </toolkit:Chart>
+                    <StackPanel Orientation="Horizontal">
+                        <toolkit:Chart x:Name="pieSubjectPayorMix" HorizontalAlignment="Left" Title="Subject" VerticalAlignment="Top" LegendStyle="{StaticResource NoLegendStyle}" Style="{StaticResource DefaultPieStyle}" Width="175" Margin="0,35">
+                            <toolkit:Chart.Series>
+                                <toolkit:PieSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                            </toolkit:Chart.Series>
+                        </toolkit:Chart>
+                        <toolkit:Chart x:Name="pieCountyPayorMix" Style="{StaticResource DefaultPieStyle}" HorizontalAlignment="Left" Title="County" VerticalAlignment="Top" LegendStyle="{StaticResource NoLegendStyle}" Width="175" Margin="0,35">
+                            <toolkit:Chart.Series>
+                                <toolkit:PieSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                            </toolkit:Chart.Series>
+                        </toolkit:Chart>
+                        <toolkit:Chart x:Name="pieStatePayorMix" Style="{StaticResource DefaultPieStyle}" HorizontalAlignment="Left" Title="State" VerticalAlignment="Top" LegendStyle="{StaticResource NoLegendStyle}" Width="175" Margin="0,35">
+                            <toolkit:Chart.Series>
+                                <toolkit:PieSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                            </toolkit:Chart.Series>
+                        </toolkit:Chart>
+                    </StackPanel>
+                </Grid>
+                <toolkit:Chart x:Name="barSkilledNursingOccupancy" Style="{StaticResource DefaultColumnStyle}" HorizontalAlignment="Left" Title="Nursing Occupancy" VerticalAlignment="Top" Margin="407,5,0,0"  >
+                    <toolkit:Chart.Series>
+                        <toolkit:ColumnSeries Title="Subject" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                        <toolkit:ColumnSeries Title="County" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                        <toolkit:ColumnSeries Title="State" IndependentValueBinding="{Binding Item1}" DependentValueBinding="{Binding Item2}" />
+                    </toolkit:Chart.Series>
+                    <toolkit:Chart.Axes>
+                        <toolkit:LinearAxis Orientation="Y" AxisLabelStyle="{StaticResource PercentAxisLabelStyle}" />
+                    </toolkit:Chart.Axes>
+                </toolkit:Chart>
+
+                <Grid Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,600,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Revenue" Grid.Row="0" Grid.Column="0" Style="{StaticResource GridTitleStyle}" />
+                    <TextBlock Text="  " Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="%" Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="PRD" Grid.Row="0" Grid.Column="3" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="State Avg" Grid.Row="0" Grid.Column="4" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    
+                    <TextBlock Text="Nursing" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding ComprehensiveRevenue, StringFormat=C0}" Grid.Row="1" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding ComprehensiveRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="1" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding ComprehensiveRevenuePerDay, StringFormat=C}" Grid.Row="1" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbComprehensiveRevenuePerDay" Text="{Binding ComprehensiveRevenuePerDay, StringFormat=C}" Grid.Row="1" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <!--<TextBlock Text="Other Care" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding OtherCareRevenue, StringFormat=C0}" Grid.Row="2" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding OtherCareRevenuePerDay, StringFormat=C}" Grid.Row="2" Grid.Column="2" Style="{StaticResource GridValueStyle}" />-->
+                    <TextBlock Text="Other" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding OtherRevenue, StringFormat=C0}" Grid.Row="2" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding OtherRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="2" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock  Text="{Binding OtherRevenuePerDay, StringFormat=C}" Grid.Row="2" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbOtherRevenuePerDay" Text="{Binding CurrentStateAverage.OtherRevenuePerDay, StringFormat=C, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <sdk:GridSplitter Style="{StaticResource TotalsGridSplitterStyle}" Grid.ColumnSpan="5" Grid.Row="2" />
+                    <TextBlock Text="Net Revenue" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock Text="{Binding TotalRevenue, StringFormat=C0}" Grid.Row="3" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="100%" Grid.Row="3" Grid.Column="2" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="{Binding TotalRevenuePerDay, StringFormat=C}" Grid.Row="3" Grid.Column="3" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock x:Name="tbTotalRevenuePerDay"  Text="{Binding TotalRevenuePerDay, StringFormat=C}" Grid.Row="3" Grid.Column="4" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="Expenses" Grid.Row="5" Grid.Column="0" Style="{StaticResource GridTitleStyle}" />
+                    <TextBlock Text="  " Grid.Row="5" Grid.Column="1" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="% of Rev." Grid.Row="5" Grid.Column="2" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="PRD" Grid.Row="5" Grid.Column="3" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="State Avg" Grid.Row="5" Grid.Column="4" Style="{StaticResource LabelColumnHeaderStyle}" />
+                    <TextBlock Text="G&amp;A" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding GovernmentAndAdministrativeExpense, StringFormat=C0}" Grid.Row="6" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding GovernmentAndAdministrativeExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="6" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding GovernmentAndAdministrativeExpensePerDay, StringFormat=C}" Grid.Row="6" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbGovernmentAndAdministrationExpensePerDay" Text="{Binding GovernmentAndAdministrativeExpensePerDay, StringFormat=C}" Grid.Row="6" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="Dietary" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding DietaryExpense, StringFormat=C0}" Grid.Row="7" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding DietaryExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="7" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding DietaryExpensePerDay, StringFormat=C}" Grid.Row="7" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbDietaryExpensePerDay" Text="{Binding DietaryExpensePerDay, StringFormat=C}" Grid.Row="7" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="H&amp;L" Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding HousekeepingAndLaundryExpense, StringFormat=C0}" Grid.Row="8" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding HousekeepingAndLaundryExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="8" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding HousekeepingAndLaundryExpensePerDay, StringFormat=C}" Grid.Row="8" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbHousekeepingAndLaundryExpensePerDay" Text="{Binding HousekeepingAndLaundryExpensePerDay, StringFormat=C}" Grid.Row="8" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="Care" Grid.Row="9" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding NursingCareExpense, StringFormat=C0}" Grid.Row="9" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding NursingCareExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="9" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding NursingCareExpensePerDay, StringFormat=C}" Grid.Row="9" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbNursingCareExpensePerDay" Text="{Binding NursingCareExpensePerDay, StringFormat=C}" Grid.Row="9" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="Other" Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding OtherPatientCareExpense, StringFormat=C0}" Grid.Row="10" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding OtherPatientCareExpensePerRevenuePercent, StringFormat= '{}{0:0.00}%'}" Grid.Row="10" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding OtherPatientCareExpensePerDay, StringFormat=C}" Grid.Row="10" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbOtherPatientCareExpensePerDay" Text="{Binding OtherPatientCareExpensePerDay, StringFormat=C}" Grid.Row="10" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="Property" Grid.Row="11" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding PropertyExpense, StringFormat=C0}" Grid.Row="11" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding PropertyExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="11" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding PropertyExpensePerDay, StringFormat=C}" Grid.Row="11" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbPropertyExpensePerDay" Text="{Binding PropertyExpensePerDay, StringFormat=C}" Grid.Row="11" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="Real Estate Tax" Grid.Row="12" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock Text="{Binding RealEstateTax, StringFormat=C0}" Grid.Row="12" Grid.Column="1" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding RealEstateTaxPerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="12" Grid.Column="2" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock Text="{Binding RealEstateTaxPerDay, StringFormat=C}" Grid.Row="12" Grid.Column="3" Style="{StaticResource GridValueStyle}" />
+                    <TextBlock x:Name="tbRealEstateTaxPerDay" Text="{Binding RealEstateTaxPerDay, StringFormat=C}" Grid.Row="12" Grid.Column="4" Style="{StaticResource GridValueStyle}" />
+                        <sdk:GridSplitter Style="{StaticResource TotalsGridSplitterStyle}" Grid.ColumnSpan="5" Grid.Row="12" />
+                    <TextBlock Text="Total Expenses" Grid.Row="13" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock Text="{Binding TotalExpense, StringFormat=C0}" Grid.Row="13" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="{Binding TotalExpensePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="13" Grid.Column="2" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="{Binding TotalExpensePerDay, StringFormat=C}" Grid.Row="13" Grid.Column="3" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock x:Name="tbTotalExpensePerDay" Text="{Binding TotalExpensePerDay, StringFormat=C}" Grid.Row="13" Grid.Column="4" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="NOI" Grid.Row="15" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock Text="{Binding NetIncome, StringFormat=C0}" Grid.Row="15" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="{Binding NetIncomePerRevenuePercent, StringFormat='{}{0:0.00}%'}" Grid.Row="15" Grid.Column="2" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="{Binding NetIncomePerDay, StringFormat=C}" Grid.Row="15" Grid.Column="3" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock x:Name="tbNetIncomePerDay" Text="{Binding NetIncomePerDay, StringFormat=C}" Grid.Row="15" Grid.Column="4" Style="{StaticResource GridValueHeaderStyle}" />
+                    <TextBlock Text="NOI/Bed" Grid.Row="16" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock Text="{Binding NetIncomePerBed, StringFormat=C0}" Grid.Row="16" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" />
+                </Grid>
+                <Grid Width="Auto" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,1000,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Implied Value" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelHeaderStyle}" />
+                    <TextBlock x:Name="tbImpliedValue"  Grid.Row="0" Grid.Column="1" Style="{StaticResource GridValueHeaderStyle}" HorizontalAlignment="Center" />
+                    <TextBlock Text="Implied Value/Bed" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelStyle}" />
+                    <TextBlock x:Name="tbImpliedValuePerBed" Grid.Row="1" Grid.Column="1"  Style="{StaticResource GridValueStyle}" HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+ 
+        </ScrollViewer>
+      
+    </Grid>
+
+</navigation:Page>
+
+
+
